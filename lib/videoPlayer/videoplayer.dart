@@ -29,12 +29,6 @@ class _VideoPlayerState extends State<VideoPlayer> {
   }
 
   @override
-  void dispose() {
-    _customVideoPlayerController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(5.0),

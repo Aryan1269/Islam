@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:islam/tabs/create.dart';
+import 'package:islam/tabs/explore.dart';
 import 'package:islam/tabs/home.dart';
 import 'package:islam/tabs/library.dart';
+import 'package:islam/tabs/subscription.dart';
 
 class bottomNav extends StatefulWidget {
   const bottomNav({Key? key}) : super(key: key);
@@ -16,9 +18,9 @@ class _bottomNavState extends State<bottomNav> {
   int currentIndex = 0;
   final screen = [
     homeScreen(),
-    Text('first2'),
+    Explore(),
     Create(),
-    Text('first4'),
+    subscription(),
     LIBRARYs(),
   ];
   @override

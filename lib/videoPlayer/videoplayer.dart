@@ -21,25 +21,22 @@ class _VideoPlayerState extends State<VideoPlayer> {
     super.initState();
     videoPlayerController = VideoPlayerController.network(widget.videoUrls)
       ..initialize().then((value) => setState(() {}));
-      AspectRatio : 16/9;
+    AspectRatio:
+    16 / 9;
     _customVideoPlayerController = CustomVideoPlayerController(
       context: context,
       videoPlayerController: videoPlayerController,
     );
   }
+    @override
+  void dispose() {
+    _customVideoPlayerController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(5.0),
-      child: Container(
-  
-        
-          child: CustomVideoPlayer(
-            customVideoPlayerController: _customVideoPlayerController
-          ),
-        ),
-    );
-  
+    return CustomVideoPlayer(
+        customVideoPlayerController: _customVideoPlayerController);
   }
 }

@@ -6,8 +6,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:islam/startup/sigin.dart';
 import 'package:islam/startup/test.dart';
 import 'package:islam/ui/bottomNav.dart';
-
 import '../CustomWidgets/CustomAppBar.dart';
+import '../backend/auth_services.dart';
 
 class register extends StatefulWidget {
   const register({Key? key}) : super(key: key);
@@ -215,7 +215,10 @@ class _registerState extends State<register> {
 
                             try {
                               await auth2.signInWithCredential(credential);
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>bottomNav()));
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => bottomNav()));
                             } catch (e) {
                               Fluttertoast.showToast(
                                   msg: "error${e}",
@@ -259,16 +262,21 @@ class _registerState extends State<register> {
                   ),
                   Center(
                     child: ElevatedButton.icon(
-                      onPressed: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>bottomNav()));
+                      icon: Icon(Icons.g_translate),
+                      label: Text('Sign in with Google'),
+                      onPressed: () async {
+                        try {
+                          // Sign in with Google and get the user's UserCredential
+                          UserCredential userCredential =
+                              await signInWithGoogle();
+
+                          // Do something with the userCredential (e.g. navigate to a new screen)
+                           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>bottomNav()));
+                        } catch (e) {
+                          // Handle sign-in errors (e.g. display an error message)
+                          // ...
+                        }
                       },
-                      icon: Icon(Icons
-                      .assignment_ind_sharp), //icon data for elevated button
-                      label: Text("Reister with google"),
-                      style: ElevatedButton.styleFrom(
-                      primary: Color.fromARGB(255, 102, 211,
-                          34) //elevated btton background color
-                      ), //label text
                     ),
                   ),
                   Center(
@@ -293,7 +301,10 @@ class _registerState extends State<register> {
                                     MaterialStateProperty.all<Color>(
                                         Colors.green)),
                             onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>signin()));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => signin()));
                             },
                             child: Text(
                               "Sign In",
